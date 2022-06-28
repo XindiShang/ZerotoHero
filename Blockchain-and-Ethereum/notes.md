@@ -32,11 +32,13 @@
   - Mist Browser
 
 #### 2.3 Metamask Config
+
 - Account Address
 - Public Key
 - Private Key
 
 #### 2.4 What's a transaction
+
 A transaction is a record of one account attempting to send money to another account
 ![alt](./images/transaction.jpg)
 
@@ -47,30 +49,36 @@ A transaction is a record of one account attempting to send money to another acc
 #### 3.1 Basic Blockchain
 
 - SHA 256 Hash Encryption
+
   - The hash always has the same length
 
-- Block 
-  - Block No. 
+- Block
+
+  - Block No.
   - Nonce (Help generate hash => signed block)
   - Data
   - Prev
-=> Hash
+    => Hash
 
 - Blockchain
+
   - Change one block, the subsequent blocks will be invalid.
   - To fix the above problem, we need to re-mine the block, which takes some time. The more blocks we altered, then it's more difficult to validate the chain, since we have to spend a lot more time re-mining.
 
 - Distributed Blockchain
+
   - make sure the block hasn't been re-mined.
   - Each peer has a copy of the blockchain. Only by checking the most recent hash of one copy can we validate the chain.
 
 - Tokens Blockchain
+
   - Problem: only shows money movement, no balance. So we don't if the money is transferable.
 
 - Coinbase
   - Coinbase shows the balance of the sender. Each block can trace back to the previous block to validate transaction.
 
 #### 3.2 Block Time
+
 - The entire process to rehash the data along with the incrementing nonce takes time.
 - Since the output hash is actually a base-10 number, we can use the number of leading zeros to determine the difficulty of the hash.
 - The time to find a hash solution is called the Block Time.
@@ -80,7 +88,50 @@ A transaction is a record of one account attempting to send money to another acc
 ### 4. Smart Contracts
 
 #### 4.1 What is a Smart Contract
+
 A smart contract is an account controlled by code.
 ![alt](./images/contract.jpg)
 
 - Smart contracts are independent on each Ethereum network. That is, the contract account in Rinkeby is not the same as the contract account in Mainnet. We have to copy the code and re-deploy the contract.
+
+- One contract source can be deployed to multiple networks. Each contract account is a contract instance.
+
+#### 4.2 Solidity Programming Language
+
+- Written in .sol files
+- Strongly typed
+- Similar to JavaScript
+- Has several huge, gigantic 'gotchas'
+
+![alt](./images/sol.jpg)
+
+#### 4.3 Solidity Contract First Taste
+
+- remix-ide
+
+```Solidity
+pragma solidity ^0.4.17; // specifies the version of Sol
+
+// contract is identical to class
+contract Inbox {
+    // declares all of the instance variable (and their types) that will exist in this contract
+    string private message; // this is a storage variable, not a local one
+
+    // this is the constructor fn, which has the same name as the contract
+    function Inbox(string initialMessage) public {
+        message = initialMessage;
+    }
+
+    function setMessage(string newMessage) public {
+        message = newMessage;
+    }
+
+    function getMessage() public view returns (string) {
+        return message;
+    }
+}
+```
+
+![alt](./images/SolFnTypes.jpg)
+
+- We cannot return data in a function that modifies the state of the contract.
