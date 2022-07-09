@@ -1,7 +1,28 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
 const Dropdown = ({ options, selected, handleSelectedChange }) => {
   const [open, setOpen] = useState(false);
+  const ref = useRef();
+
+  useEffect(() => {
+    // In React 16, all events are registered at the topmost DOM node, which is the <html> tag.
+    // So e.stopPropagation() won't work: If a nested tree has stopped propagation of an event, the outer tree would still receive it.
+    // In React 17, the events are registered at the root DOM container where React tree is rendered.
+    const onBodyClick = (e) => {
+      // contains is the native method of the DOM
+      if (ref.current.contains(e.target)) {
+        return;
+      }
+      setOpen(false);
+    }
+
+    document.body.addEventListener('click', onBodyClick, { capture: true });
+
+    // Clean up the event listener when the component is unmounted
+    return () => {
+      document.body.removeEventListener('click', onBodyClick, { capture: true });
+    }
+  }, []);
 
   const renderedOptions = options.map((option) => {
     if (option.value === selected.value) {
@@ -19,7 +40,7 @@ const Dropdown = ({ options, selected, handleSelectedChange }) => {
   });
 
   return (
-    <div className="ui form">
+    <div ref={ref} className="ui form">
       <div className="field">
         <label>Select a Color</label>
         <div

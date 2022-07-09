@@ -13,8 +13,7 @@
 
 Class Components => Hooks => Redux
 
-### 3. Benfits of Class Components
-
+### 3. Benefits of Class Components
 ![alt](./pictures/ClassBenefits.jpg)
 
 ### 4. Rules of Class Components

@@ -123,3 +123,101 @@ useEffect(() => {
 ```
 
 ### 4. useRef
+
+- Native event listeners have a higher priority than React event listeners.
+
+- useRef is a hook that lets you access the DOM node of a component.
+
+```jsx
+const ref = useRef();
+
+useEffect(() => {
+  // In React 16, all events are registered at the topmost DOM node, which is the <html> tag.
+  // So e.stopPropagation() won't work: If a nested tree has stopped propagation of an event, the outer tree would still receive it.
+  // In React 17, the events are registered at the root DOM container where React tree is rendered.
+  document.addEventListener(
+    "click",
+    (e) => {
+      // contains is the native method of the DOM
+      if (ref.current.contains(e.target)) {
+        return;
+      }
+      setOpen(false);
+    },
+    { capture: true }
+  );
+}, []);
+
+return (
+  <div ref={ref} className="ui form">
+    <div className="field">
+      <label>Select a Color</label>
+      <div
+        onClick={() => setOpen(!open)}
+        className={`ui selection dropdown ${open ? "visible active" : ""}`}
+      >
+        <i className="dropdown icon" />
+        <div className="text">{selected.label}</div>
+        <div className={`menu ${open ? "visible transition" : ""}`}>
+          {renderedOptions}
+        </div>
+      </div>
+    </div>
+  </div>
+);
+```
+
+- Refactor: clean up event listeners
+  - App.js
+
+```jsx
+const App = () => {
+  const [selected, setSelected] = useState(options[0]);
+  const [showDropdown, setShowDropdown] = useState(true);
+
+  return (
+    <div>
+      {/* <br /> */}
+      {/* <Accordion items={items} /> */}
+      {/* <Search /> */}
+      <button onClick={() => setShowDropdown(!showDropdown)}>Toggle me!</button>
+      {showDropdown ? (
+        <Dropdown
+          selected={selected}
+          handleSelectedChange={setSelected}
+          options={options}
+        />
+      ) : (
+        <p>Boo!</p>
+      )}
+    </div>
+  );
+};
+```
+
+  - Dropdown.js
+
+```jsx
+useEffect(() => {
+  const onBodyClick = (e) => {
+    if (ref.current.contains(e.target)) {
+      return;
+    }
+    setOpen(false);
+  };
+
+  document.body.addEventListener("click", onBodyClick, { capture: true });
+
+  // Clean up the event listener when the component is unmounted
+  return () => {
+    document.body.removeEventListener("click", onBodyClick, { capture: true });
+  };
+}, []);
+```
+
+- Fix: Too many re-renders error
+
+```jsx
+// remember to use arrow fn in click handler, otherwise, React will throw an error: too many re-renders
+<button onClick={() => setShowDropdown(!showDropdown)}>Toggle me!</button>
+```
