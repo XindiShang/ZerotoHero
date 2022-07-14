@@ -195,7 +195,7 @@ const App = () => {
 };
 ```
 
-  - Dropdown.js
+- Dropdown.js
 
 ```jsx
 useEffect(() => {
@@ -220,4 +220,72 @@ useEffect(() => {
 ```jsx
 // remember to use arrow fn in click handler, otherwise, React will throw an error: too many re-renders
 <button onClick={() => setShowDropdown(!showDropdown)}>Toggle me!</button>
+```
+
+### 5. Custom Hooks
+
+- Custom Hooks are a separate, reuseable function.
+  ![alt](./pictures/CustomHooks.png)
+  ![alt](./pictures/CustomHooksFlow.png)
+
+- The beauty of custom hooks is the return value, with the ability to return multiple data (both variable and function). It's like a store powered by react native hooks.
+
+- useVideos.js
+
+```jsx
+import { useState, useEffect } from "react";
+import youtube from "../api/youtube";
+
+const useVideos = (defaultSearchTerm) => {
+  const [videos, setVideos] = useState([]);
+
+  useEffect(() => {
+    search(defaultSearchTerm);
+  }, [defaultSearchTerm]);
+
+  const search = async (term) => {
+    const res = await youtube.get("/search", {
+      params: { q: term },
+    });
+    setVideos(res.data.items);
+  };
+
+  // it's also okay to return {videos, search}
+  return [videos, search];
+};
+
+export default useVideos;
+```
+
+- App.js
+
+```jsx
+// inside App component
+const [selectedVideo, setSelectedVideo] = useState(null);
+
+const [videos, search] = useVideos("js");
+
+// since the app component will be re-rendered every time a piece of state (search term) changes, we can use useEffect to update the selected video whenever the video results changed.
+
+useEffect(() => {
+  setSelectedVideo(videos[0]);
+}, [videos]);
+```
+
+### 6. Hooks Summary
+
+- In React, parent-child communication is done through passing fn as prop to child components, then child components call the fn to pass data back to parent.
+
+- If a the callback fn has only one line and holds a single argument, it can be written as follow:
+
+```jsx
+// before
+<VideoList handleSelect={(video) => setSelectedVideo(video)} videos={videos} />
+
+// after
+<VideoList videos={videos} onSelect={setSelectedVideo} />
+```
+
+```
+
 ```
