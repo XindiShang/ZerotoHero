@@ -9,3 +9,9 @@
 - `{createStore, combineReducers}`
 - In Redux, states are included in the reducers, along with the action.
 ![alt](./pictures/ReduxCycle.png)
+
+### 3. React-Redux Library
+- Provider (topmost of the hierarchy) -> App -> Connect => Component
+
+// TODO
+1. learn RTK
