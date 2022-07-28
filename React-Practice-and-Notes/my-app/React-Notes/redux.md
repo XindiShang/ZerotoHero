@@ -90,9 +90,76 @@ export const connect = (mapStateToProps) => {
 ```
 
 ### 4. Summary & Reflection
+
 - connect function takes two arguments, first being the mapStateToProps function, and second being the actions to be passed to the component.
 
 - A reducer is a combination of state and actions. It always returns a state, and will mutate the state based on different action types.
+
+### 5. Redux-Thunk
+
+- actions must return a plain js object, instead of a promise(from async function);
+
+```jsx
+export const fetchPost = async () => {
+  // This is a bad practice and will show error message in the console
+  const response = await axios.get("/posts");
+
+  return {
+    type: "FETCH_POST",
+  };
+};
+```
+
+- Redux-Thunk can return either an action or a function. It's like calling dispatch 2 times. The first time, it dispatches a plain object (a function) and this async function calls an api and manually dispatches another action. The second time, the synchronous action gets dispatched, and moves on to the reducer stage.
+![alt](./pictures/asyncMiddleware.png)
+![alt](./pictures/reduxThunk.png)
+
+```jsx
+// redux-thunk behind the scnes
+export const fetchPost = () => {
+  return function (dispatch, getState) {
+    const promise = axios.get('/posts');
+
+    return {
+      type: "FETCH_POST",
+      payload: promise
+
+    }
+  }
+
+}
+```
+
+- RTK built-in thunk
+```jsx
+// index.js
+import { Provider } from "react-redux";
+import { configureStore } from "@reduxjs/toolkit";
+import reducers from "./8. Blog/reducers";
+import axios from "./8. Blog/api/jsonPlaceholder";
+
+const store = configureStore({
+  reducer: reducers,
+  middleware: getDefaultMiddleware => 
+    getDefaultMiddleware({
+      thunk: {
+        extraArgument: axios
+      }
+    })
+})
+```
+
+```jsx
+// actions/index.js
+export const fetchPost = () => {
+  // the extraArgument from configureStore is the 3rd argument
+  return async function (dispatch, getState, api) {
+    const response = await api.get('/posts');
+
+    dispatch({type: 'FETCH_POST', payload: response})
+  }
+}
+```
 
 // TODO
 
