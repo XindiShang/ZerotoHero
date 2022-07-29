@@ -95,6 +95,13 @@ export const connect = (mapStateToProps) => {
 
 - A reducer is a combination of state and actions. It always returns a state, and will mutate the state based on different action types.
 
+- Reducers can never return undefined.
+
+- Why never mutate the state directly? because in redux source code, when state receives a change (e.g. has a different address in memory), it will inform all the subscribers to the store.
+
+- use lodash's _.omit() to remove the key/value pair from an object. Essentially, it creates a new object in the memory.
+
+- ```mapStateToProps(state, ownProps)```
 ### 5. Redux-Thunk
 
 - actions must return a plain js object, instead of a promise(from async function);
@@ -161,6 +168,3 @@ export const fetchPost = () => {
 }
 ```
 
-// TODO
-
-1. learn RTK
