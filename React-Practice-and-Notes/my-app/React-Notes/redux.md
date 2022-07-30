@@ -99,9 +99,10 @@ export const connect = (mapStateToProps) => {
 
 - Why never mutate the state directly? because in redux source code, when state receives a change (e.g. has a different address in memory), it will inform all the subscribers to the store.
 
-- use lodash's _.omit() to remove the key/value pair from an object. Essentially, it creates a new object in the memory.
+- use lodash's \_.omit() to remove the key/value pair from an object. Essentially, it creates a new object in the memory.
 
-- ```mapStateToProps(state, ownProps)```
+- `mapStateToProps(state, ownProps)`
+
 ### 5. Redux-Thunk
 
 - actions must return a plain js object, instead of a promise(from async function);
@@ -118,26 +119,25 @@ export const fetchPost = async () => {
 ```
 
 - Redux-Thunk can return either an action or a function. It's like calling dispatch 2 times. The first time, it dispatches a plain object (a function) and this async function calls an api and manually dispatches another action. The second time, the synchronous action gets dispatched, and moves on to the reducer stage.
-![alt](./pictures/asyncMiddleware.png)
-![alt](./pictures/reduxThunk.png)
+  ![alt](./pictures/asyncMiddleware.png)
+  ![alt](./pictures/reduxThunk.png)
 
 ```jsx
 // redux-thunk behind the scnes
 export const fetchPost = () => {
   return function (dispatch, getState) {
-    const promise = axios.get('/posts');
+    const promise = axios.get("/posts");
 
     return {
       type: "FETCH_POST",
-      payload: promise
-
-    }
-  }
-
-}
+      payload: promise,
+    };
+  };
+};
 ```
 
 - RTK built-in thunk
+
 ```jsx
 // index.js
 import { Provider } from "react-redux";
@@ -147,13 +147,13 @@ import axios from "./8. Blog/api/jsonPlaceholder";
 
 const store = configureStore({
   reducer: reducers,
-  middleware: getDefaultMiddleware => 
+  middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       thunk: {
-        extraArgument: axios
-      }
-    })
-})
+        extraArgument: axios,
+      },
+    }),
+});
 ```
 
 ```jsx
@@ -161,10 +161,77 @@ const store = configureStore({
 export const fetchPost = () => {
   // the extraArgument from configureStore is the 3rd argument
   return async function (dispatch, getState, api) {
-    const response = await api.get('/posts');
+    const response = await api.get("/posts");
 
-    dispatch({type: 'FETCH_POST', payload: response})
-  }
-}
+    dispatch({ type: "FETCH_POST", payload: response });
+  };
+};
 ```
 
+### 6. Memoization
+
+- Memoization is a technique to cache the result of a function. In simpler words, it consists of storing in cache the output of a function, and making the function check if each required computation is in the cache before computing it. A cache is simply a temporary data store that holds data so that future requests for that data can be served faster.
+
+- Lodash has a function called \_.memoize() that can be used to cache the result of a function. NOTE: the first argument of the memoized function is treated as the cached key, if a resolver isn't provided.
+
+![alt](./pictures/LodashMemoize.png)
+
+```jsx
+// The issue with memoization
+export const unMemoizedFetchUser = (id) => (dispatch, _getState, api) => {
+  // This won't memoize successfully, because each time this action is created (fetching the user),
+  // it will create a new memoize function in memory. What we want is the same memoize function each time action is created.
+  return _.memoize(async (id, dispatch, api) => {
+    const { data } = await api.get(`/users/${id}`);
+    dispatch({
+      type: "FETCH_USER",
+      payload: data,
+    });
+  });
+};
+```
+
+```jsx
+// Solution 1
+export const fetchUser = (id) => (dispatch, _getState, api) => {
+  // Solution 1: define the memoize function outside of the action creator, so the memoize function is always at the same address in memory.
+  // In other words, it's always gonna be the same function.
+  _fetchUser(id, dispatch, api);
+};
+
+const _fetchUser = _.memoize(async (id, dispatch, api) => {
+  const { data } = await api.get(`/users/${id}`);
+  dispatch({
+    type: "FETCH_USER",
+    payload: data,
+  });
+});
+```
+
+```jsx
+// Solution 2
+// The downside of solution 1 is that the memoize function only update based on the cached key, which is the id.
+// The logic of solution 2 is to first fetch all the data (posts and users), then find all unique ids, and call fetchUser one by one.
+export const fetchPostsAndUsers = () => async (dispatch, getState) => {
+  // use dispatch here because redux-thunk will dispatch this function
+  await dispatch(fetchPosts());
+  // _.map(collection, property) returns the new array consists only of values of the given property
+  // _.uniq(array) returns the new array consists only of unique values
+  const userIds = _.uniq(_.map(getState().posts, "userId"));
+  // This time, we don't have to await because there aren't following actions
+  userIds.forEach((id) => dispatch(fetchUser(id)));
+};
+```
+
+```jsx
+// Solution 2 refactored
+export const fetchPostsAndUsers = () => async (dispatch, getState) => {
+  await dispatch(fetchPosts());
+
+  _.chain(getState().posts)
+    .map('userId')
+    .uniq()
+    .forEach(id => dispatch(fetchUser(id)))
+    .value(); // This is a MUST-DO step to make sure the chain is executed
+}
+```
