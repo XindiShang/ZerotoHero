@@ -219,3 +219,24 @@ git push <remote> <branch>
 git push -u <remote-name> <branch> // -u means upstream, after setting -u, we can use git push, without declaring the remote name and the branch name
 ```
 
+### 4. git fetch & git pull
+git fetch will not overwrite local changes, git pull will overwrite local changes.
+git pull = git fetch + git merge
+```
+git branch -r // list all remote branches
+git checkout --track origin puppies // create a new local branch called "puppies" that tracks the remote branch "puppies"
+git switch origin puppies // same as the above
+git fetch <remote> // fetch all the branches from the remote
+git fetch <remote> <branch> // fetch a specific branch from the remote
+git pull <remote> <branch> // pull a specific branch from the remote and update the working directory
+git pull // remote will default to origin  and branch will default to the tracking branch
+```
+
+
+### 5.  public vs private repos
+- difference
+  - public repos are accessible by anyone
+  - private repos are accessible only by you
+
+- add collaborators
+  - settings => manage access => invite a collaborator
