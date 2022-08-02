@@ -1,11 +1,11 @@
 import React from "react";
 import { createRoot } from "react-dom/client";
-import App from "./8. Blog/components/App";
+import App from "./9. Stream/client/components/App";
 
 import { Provider } from "react-redux";
 // import { createStore } from "redux";
 import { configureStore } from "@reduxjs/toolkit";
-import reducers from "./8. Blog/reducers";
+import reducers from "./9. Stream/client/reducers";
 import axios from "./8. Blog/api/jsonPlaceholder";
 
 const store = configureStore({

@@ -56,3 +56,15 @@ const Route = ({ path, children }) => {
 ```
 
 - App.js lists all the routes and renders them.
+
+### 3. React Router Dom
+
+- Bad practice: use `<a>` instead of `<Link to="#">`, then the browser will fetch chunk(HTML/CSS/JS) from the server again, which means dumping the old chunk, incl. stats, JS variables, etc.
+
+- #### 3.1 Router Types
+- It's all about deployment. Hash routing is for browser routing, which behaves likes SPA.
+  -- `BrowserRouter`: for browser routing
+  -- `HashRouter`: for hash routing
+  -- `MemoryRouter`: for memory routing
+
+- `<Link>` should always be used inside `<Router>`
