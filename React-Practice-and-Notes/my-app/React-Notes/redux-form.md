@@ -103,3 +103,9 @@ export default reduxForm({
   validate, // pass validate method here
 })(StreamCreate);
 ```
+
+### 2. Redux New Object Creation Syntax
+![alt](./pictures/newObjSyntax.png)
+
+### 3. Useful Lodash Methods
+- _.pick(object, [paths]) - Returns an object containing the picked object properties.
