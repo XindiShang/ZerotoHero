@@ -105,7 +105,15 @@ export default reduxForm({
 ```
 
 ### 2. Redux New Object Creation Syntax
+
 ![alt](./pictures/newObjSyntax.png)
 
 ### 3. Useful Lodash Methods
-- _.pick(object, [paths]) - Returns an object containing the picked object properties.
+
+- \_.pick(object, [paths]) - Returns an object containing the picked object properties.
+
+### 4. Portal
+
+- ReactDOM.createPortal(children, container) - Creates a portal into the DOM.
+
+- `<React.Fragment>` or `<></>` - like an empty div tag.
