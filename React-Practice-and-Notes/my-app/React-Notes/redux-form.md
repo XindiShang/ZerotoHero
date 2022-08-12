@@ -117,3 +117,5 @@ export default reduxForm({
 - ReactDOM.createPortal(children, container) - Creates a portal into the DOM.
 
 - `<React.Fragment>` or `<></>` - like an empty div tag.
+
+- ``<Switch>`` - renders the first child that matches the current path.
