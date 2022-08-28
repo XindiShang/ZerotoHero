@@ -1,23 +1,23 @@
 // 1) Import the React and ReactDOM libraries
 import React from "react";
 import { createRoot } from "react-dom/client";
-import App from "./9. Stream/client/components/App";
+import App from "./10. Translate/components/App";
 
-import { Provider } from "react-redux";
+// import { Provider } from "react-redux";
 // import { createStore } from "redux";
-import { configureStore } from "@reduxjs/toolkit";
-import reducers from "./9. Stream/client/reducers";
-import axios from "./9. Stream/client/api/streams";
+// import { configureStore } from "@reduxjs/toolkit";
+// import reducers from "./9. Stream/client/reducers";
+// import axios from "./9. Stream/client/api/streams";
 
-const store = configureStore({
-  reducer: reducers,
-  middleware: getDefaultMiddleware => 
-    getDefaultMiddleware({
-      thunk: {
-        extraArgument: axios
-      }
-    })
-})
+// const store = configureStore({
+//   reducer: reducers,
+//   middleware: getDefaultMiddleware => 
+//     getDefaultMiddleware({
+//       thunk: {
+//         extraArgument: axios
+//       }
+//     })
+// })
 
 // const store = createStore(reducers);
 
@@ -30,9 +30,9 @@ const root = createRoot(el);
 // 4) Create a component
 function Wrapper () {
   return (
-    <Provider store={store}>
+    // <Provider store={store}>
       <App />
-    </Provider>
+    // </Provider>
   );
 }
 
