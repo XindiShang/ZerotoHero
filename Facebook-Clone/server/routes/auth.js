@@ -5,7 +5,6 @@ const bcrypt = require("bcrypt");
 // REGISTER
 router.post("/register", async (req, res) => {
 
-
   try {
     // generate new salt for each user
     const salt = await bcrypt.genSalt(10);
