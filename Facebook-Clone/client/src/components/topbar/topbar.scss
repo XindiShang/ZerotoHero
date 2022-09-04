@@ -1,0 +1,96 @@
+.topbar {
+    height: 50px;
+    width: 100%;
+    background-color: #1877f2;
+    display: flex;
+    align-items: center;
+    position: sticky;
+    top: 0;
+
+  &Left {
+    flex: 3;
+
+    .logo {
+      font-size: 24px;
+      font-weight: bold;
+      margin-left: 20px;
+      color: #fff;
+      cursor: pointer;
+    }
+  }
+
+  &Center {
+    flex: 5;
+
+    .searchbar {
+      width: 100%;
+      height: 30px;
+      background-color: #fff;
+      border-radius: 30px;
+      display: flex;
+      align-items: center;
+
+      &Icon {
+        font-size: 20px !important;
+        margin-left: 10px;
+        margin-right: 10px;
+      }
+
+      &Input {
+        border: none;
+        width: 70%;
+      }
+
+      &Input:focus {
+        outline: none;
+      }
+    }
+  }
+
+  &Right {
+    flex: 4;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    color: #fff;
+  }
+
+  &Link {
+    margin-left: 10px;
+    margin-right: 14px;
+    cursor: pointer;
+  }
+
+  &Icons {
+    display: flex;
+  }
+
+  &IconItem {
+    margin-right: 15px;
+    cursor: pointer;
+    position: relative;
+  }
+
+  &IconBadge {
+    width: 15px;
+    height: 15px;
+    background-color: #ff0000;
+    border-radius: 50%;
+    color: #fff;
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+  }
+
+  &Img {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+    cursor: pointer;
+  }
+}
