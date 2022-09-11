@@ -1,3 +1,75 @@
 .rightbar {
   flex: 3.5;
+
+  &Wrapper {
+    padding: 20px 20px 0 0;
+  }
+
+  .birthdayContainer {
+    display: flex;
+    align-items: center;
+
+    .birthdayImg {
+      width: 40px;
+      height: 40px;
+      object-fit: cover;
+      margin-right: 10px;
+    }
+
+    .birthdayText {
+      font-weight: 300;
+      font-size: 15px;
+    }
+  }
+
+  &Ad {
+    width: 100%;
+    border-radius: 10px;
+    margin: 30px 0;
+  }
+
+  &Title {
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 10px;
+  }
+
+  &FriendList {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+
+  &Friend {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+  }
+
+  &ProfileImgContainer{
+    margin-right: 10px;
+    position: relative;
+  }
+
+  &ProfileImg {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 50%;
+  }
+
+  &Online {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: limegreen;
+    position: absolute;
+    top: -2px;
+    right: 0;
+    border: 2px solid white;
+  }
+
+  &Username {
+    font-weight: 500;
+  }
 }
