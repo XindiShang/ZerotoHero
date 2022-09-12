@@ -28,48 +28,53 @@
     margin: 30px 0;
   }
 
-  &Title {
-    font-size: 18px;
-    font-weight: 500;
-    margin-bottom: 10px;
-  }
-
   &FriendList {
     padding: 0;
     margin: 0;
     list-style: none;
   }
 
-  &Friend {
-    display: flex;
-    align-items: center;
-    margin-bottom: 15px;
-  }
-
-  &ProfileImgContainer{
-    margin-right: 10px;
-    position: relative;
-  }
-
-  &ProfileImg {
-    width: 40px;
-    height: 40px;
-    object-fit: cover;
-    border-radius: 50%;
-  }
-
-  &Online {
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    background-color: limegreen;
-    position: absolute;
-    top: -2px;
-    right: 0;
-    border: 2px solid white;
-  }
-
-  &Username {
+  &Title {
+    font-size: 18px;
     font-weight: 500;
+    margin-bottom: 10px;
+  }
+
+  &Info {
+    margin-bottom: 30px;
+
+    &Item {
+      margin-bottom: 10px;
+    }
+
+    &Key {
+      font-weight: 500;
+      margin-right: 15px;
+      color: #555;
+    }
+
+    &Value {
+      font-weight: 300;
+    }
+  }
+
+  &Followings {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  &Following {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+    cursor: pointer;
+  }
+
+  &FollowingImg {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 5px;
   }
 }
