@@ -26,7 +26,7 @@ app.use(morgan("common"));
 
 app.use("/api/user", userRoutes)
 app.use("/api/auth", authRoutes)
-app.use("/api/post", postRoutes)
+app.use("/api/posts", postRoutes)
 
 app.get("/", (req, res) => {
   res.send("Hello World");
