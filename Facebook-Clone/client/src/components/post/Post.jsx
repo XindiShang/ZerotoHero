@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
 import "./post.scss";
 import { MoreVert } from "@mui/icons-material";
-import axios from "axios";
+import request from "../../utils/request";
 import { format } from "timeago.js";
-
+import { Link } from "react-router-dom";
 
 // the prop name "post" is derived from the component name "Post"
 const Post = ({ post }) => {
@@ -12,10 +12,9 @@ const Post = ({ post }) => {
   const [user, setUser] = useState({});
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
 
-
   useEffect(() => {
     const fetchUser = async () => {
-      const res = await axios.get(`user/${post.userId}`);
+      const res = await request.get(`/user?userId=${post.userId}`);
       setUser(res.data)
     };
     fetchUser();
@@ -30,11 +29,13 @@ const Post = ({ post }) => {
       <div className="postWrapper">
         <div className="postTop">
           <div className="postTopLeft">
+            <Link to={`profile/${user.userName}`}>
             <img
               src={user.profilePicture || PF + "person/noAvatar.png"}
               alt=""
               className="postProfileImg"
-            />
+              />
+            </Link>
             <span className="postUsername">{user.userName}</span>
             <span className="postDate">{format(post.createdAt, 'zh_CN')}</span>
           </div>

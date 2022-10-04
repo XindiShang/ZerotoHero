@@ -53,7 +53,7 @@ const UserSchema = new mongoose.Schema({
   },
   relationship: {
     type: Number,
-    enum: [1, 2, 3]
+    enum: [0, 1, 2]
   }
 }, { timestamps: true });
 

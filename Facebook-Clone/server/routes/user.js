@@ -40,9 +40,13 @@ router.delete("/:id", async (req, res) => {
   }
 });
 // GET USER
-router.get("/:id", async (req, res) => {
+router.get("/", async (req, res) => {
+  const userId = req.query.userId;
+  const userName = req.query.userName;
   try {
-    const user = await User.findById(req.params.id);
+    const user = userId ?
+      await User.findById(userId)
+      : await User.findOne({ userName });
     const {password, createdAt, updatedAt, ...otherUserInfo} = user._doc;
     res.status(200).json(otherUserInfo);
   } catch (err) {
