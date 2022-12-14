@@ -12,3 +12,27 @@ fix: This problem is usually caused by not having primeVue installed in the mach
 
 ### 1. flex column parent, grid child height overflows
 fix: set grid child's min-height: 0, because if the grid item is not given a fixed height, its min height is set to auto, and it will expand unexpectedly.
+
+### 2. spacing does not work properly when migrating from Windi CSS to Tailwind CSS 
+fix: In Windi css, when using specific unit (e.g. 24px) for spacing, the css class can be written as ```p-24px```, but in Tailwind CSS, the class will not work. There are 3 ways to fix this:
+- 1. use ```p-6``` instead of ```p-24px```
+- 2. use ```p-[24px]```(TW) instead of ```p-24px```(Windi)
+- 3. add ```p-24px: 24px``` to the ```theme``` section in ```tailwind.config.js```
+
+note: TW's spacing rule:
+- 1. px / 4 = unit
+- 2. rem * 4 = unit
+
+## T3 
+
+### 1. After installed, Echarts-gl library still not working and failed to compile
+fix: First, in the chart component, make sure the import order is correct, put ```import 'echarts-gl'``` before ```import * as echarts from 'echarts'```. Second, in the parent component file, use Next's dynamic import to import the chart component, write ```const Chart = dynamic(() => import('./Chart'), { ssr: false })```, and then use ```<Chart />``` in the parent component.
+
+### 2. Create-T3-Turbo App: Error: Pnpm lockfile is broken, a full installation will be performed
+- ![alt](./images/pnpm-t3.png)
+fix: delete the .pnpm-store folder (usually located in D drive), and then run ```pnpm install``` again.
+
+### 3. Eslint error: do not use @ts-ignore
+fix: add ```// eslint-disable-next-line @typescript-eslint/ban-ts-comment``` before the line of code that uses ```@ts-ignore```. This is because ```@ts-ignore``` is a bad practice, and it is recommended to use ```@ts-expect-error``` instead. However, in some cases, ```@ts-ignore``` is necessary, so we need to disable the eslint rule for this line of code, while still keeping the eslint rule for other lines of code.
+
+note: the same fix can be applied to other eslint rules that are not necessary for some lines of code, like ```no-this-alias ``` etc.
