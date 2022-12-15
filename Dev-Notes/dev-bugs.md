@@ -36,3 +36,8 @@ fix: delete the .pnpm-store folder (usually located in D drive), and then run ``
 fix: add ```// eslint-disable-next-line @typescript-eslint/ban-ts-comment``` before the line of code that uses ```@ts-ignore```. This is because ```@ts-ignore``` is a bad practice, and it is recommended to use ```@ts-expect-error``` instead. However, in some cases, ```@ts-ignore``` is necessary, so we need to disable the eslint rule for this line of code, while still keeping the eslint rule for other lines of code.
 
 note: the same fix can be applied to other eslint rules that are not necessary for some lines of code, like ```no-this-alias ``` etc.
+
+### 4. 3-rd party library not working (cannot read property of null, reading useRef/useState ...)
+fix: It's probably because the library's import order is wrong. Specify the package name and version (latest) in the current app's ```package.json``` file, then run ```pnpm i``` in root folder, and run ```format``` to make sure the import order is correct.
+
+note: Since T3 Turbo is a mono-repo, don't run ```pnpm i``` in the app's folder, instead, run ```pnpm i``` in the root folder.
