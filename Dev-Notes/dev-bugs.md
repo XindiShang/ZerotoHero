@@ -41,3 +41,44 @@ note: the same fix can be applied to other eslint rules that are not necessary f
 fix: It's probably because the library's import order is wrong. Specify the package name and version (latest) in the current app's ```package.json``` file, then run ```pnpm i``` in root folder, and run ```format``` to make sure the import order is correct.
 
 note: Since T3 Turbo is a mono-repo, don't run ```pnpm i``` in the app's folder, instead, run ```pnpm i``` in the root folder.
+
+## Next.js/React
+
+### 1. Rendered fewer/more hooks than during the previous render
+code:
+```jsx
+// - /pages/monitor.tsx
+const Home: React.FC(props) = () {
+  // ...hooks here
+  return (
+    <div>
+      // ...jsx here
+    </div>
+  )
+}
+
+export default Home
+```
+fix: This is because in Next.js, each file in pages folder must be a default export, and it should follow the pattern below, otherwise Next.js wouldn't treat it as a React component, instead, ```Home``` would be treated as a regular JavaScript function. One important rule of hooks is that hooks should be called from React function components. So the code above should be changed to:
+```jsx
+// - /pages/monitor.tsx
+const Home = () => {
+  // ...hooks here
+  return (
+    <div>
+      // ...jsx here
+    </div>
+  )
+}
+
+export default function Page () {
+  return (
+    <>
+      <Home />
+    </>
+  );
+}
+```
+
+### client-side environment variable not found
+fix: In Next.js, all client-side envs should be prefixed with ```NEXT_PUBLIC_```, e.g. ```NEXT_PUBLIC_API_URL```
