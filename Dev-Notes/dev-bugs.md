@@ -82,3 +82,17 @@ export default function Page () {
 
 ### client-side environment variable not found
 fix: In Next.js, all client-side envs should be prefixed with ```NEXT_PUBLIC_```, e.g. ```NEXT_PUBLIC_API_URL```
+
+## Git
+
+### 1. .gitignore not working
+fix: Since the node_modules directory is already tracked as part of the repository, the .gitignore rule will not apply to it.
+
+You need to untrack the directory from git using
+
+```
+git rm -r --cached node_modules
+git commit -m "removing node_modules"
+```
+
+After this, the .gitignore rule will ignore the directory away.
