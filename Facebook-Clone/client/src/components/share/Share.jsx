@@ -5,6 +5,7 @@ import { AuthContext } from "../../context/AuthContext";
 import request from "../../utils/request";
 import "./share.scss";
 
+// TODO: add image preview after image is selected
 const Share = () => {
   const { user } = useContext(AuthContext);
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
@@ -19,10 +20,25 @@ const Share = () => {
       desc: desc.current.value,
     };
 
+    if (file) {
+      const data = new FormData();
+      const fileName = Date.now() + file.name;
+      data.append("name", fileName);
+      data.append("file", file);
+      newPost.img = fileName;
+
+      try {
+        await request.post("/upload", data);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+
     try {
       await request.post("/posts", newPost);
+      window.location.reload();
     } catch (error) {
-      
+      console.log(error);
     }
   };
 
