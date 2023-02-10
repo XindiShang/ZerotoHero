@@ -1,14 +1,16 @@
 # Bugs and Fixes while Developing
-## npm
+
+## `npm`
+
 ### 1. node-sass (gyp) error/not working on OSX (M1 chip) machine
 fix: downgrade node to 14.15.0 (or a similar old version), if the problem still exists, try not to run npm scripts directly from VS code (switching node versions in terminal does not affect VS code's default settings), instead, type npm commands in the terminal where the node version is downgraded.
 
-## primeVue
+## `primeVue`
 
 ### 1. primeVue is not installed!
 fix: This problem is usually caused by not having primeVue installed in the machine. So in a new or newly cloned primeVue project, before running ``` pnpm install ```, run the following 2 commands first:```npm install primevue@^3 --save``` and ```npm install primeicons --save``` , to make sure primeVue is installed locally. 
 
-## CSS
+## `CSS`
 
 ### 1. flex column parent, grid child height overflows
 fix: set grid child's min-height: 0, because if the grid item is not given a fixed height, its min height is set to auto, and it will expand unexpectedly.
@@ -23,7 +25,7 @@ note: TW's spacing rule:
 - 1. px / 4 = unit
 - 2. rem * 4 = unit
 
-## T3 
+## `T3`
 
 ### 1. After installed, Echarts-gl library still not working and failed to compile
 fix: First, in the chart component, make sure the import order is correct, put ```import 'echarts-gl'``` before ```import * as echarts from 'echarts'```. Second, in the parent component file, use Next's dynamic import to import the chart component, write ```const Chart = dynamic(() => import('./Chart'), { ssr: false })```, and then use ```<Chart />``` in the parent component.
