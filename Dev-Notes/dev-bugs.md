@@ -3,7 +3,7 @@
 ## `npm`
 
 ### 1. node-sass (gyp) error/not working on OSX (M1 chip) machine
-fix: downgrade node to 14.15.0 (or a similar old version), if the problem still exists, try not to run npm scripts directly from VS code (switching node versions in terminal does not affect VS code's default settings), instead, type npm commands in the terminal where the node version is downgraded.
+fix: 1. downgrade node to 14.15.0 (or a similar old version), check node-sass npm website for reference; 2. if node-sass is not found, or the terminal shows `python PATH err`, run `npm install node-sass -g`, use `npm` instead of the package manager of the current project. Then, re-run the project.
 
 ## `primeVue`
 
@@ -24,6 +24,9 @@ fix: In Windi css, when using specific unit (e.g. 24px) for spacing, the css cla
 note: TW's spacing rule:
 - 1. px / 4 = unit
 - 2. rem * 4 = unit
+
+### 3. New line based on the number of words
+fix: `max-width: 20ch` does not achieve the effect. The unit `ch` means the width of the character `0` in the current font. So if the font is not monospaced, the width of the character `0` will be different from the width of other characters. So the `max-width: 20ch` will not work properly. The solution is to use `max-width: 20em` instead. And after setting the max-width, make sure to also set `word-wrap: break-word` to make sure the word will be broken into multiple lines if it's too long.
 
 ## `T3`
 
