@@ -42,6 +42,10 @@ fix: It's probably because the library's import order is wrong. Specify the pack
 
 note: Since T3 Turbo is a mono-repo, don't run ```pnpm i``` in the app's folder, instead, run ```pnpm i``` in the root folder.
 
+### 5. Husky pre-commit hook permission denied while running `pnpm i`
+- ![alt](./images/husky-permission-denied.png)
+fix: "Permission denied" means that your script file does not have the "execute" permission set. Run `chmod +x ./node_modules/husky/lib/bin.js` in the root folder. NOTE: `chmod` is a command that changes the permissions of a file or directory. The `+x` option means to add the "execute" permission to the file. And `sudo` won't work here.
+
 ## Next.js/React
 
 ### 1. Rendered fewer/more hooks than during the previous render
