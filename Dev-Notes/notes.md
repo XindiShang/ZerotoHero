@@ -54,3 +54,9 @@
   e.g. echo "chore: initial commit" | npx commitlint
 
   ```
+
+## `VSCode ...again`
+
+### 1. reset VSCode side panel
+- open the commands textbox with `CTRL+p` and then enter the command `> Reset View Locations`.
+
