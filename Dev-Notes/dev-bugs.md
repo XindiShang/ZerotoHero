@@ -86,6 +86,11 @@ flex-basis : 0;   ➜ The div does not have a starting value as such and will
 }
 ```
 
+### 5. how to give a span a width of 100% of its parent
+
+fix: use `display: block` or `display: inline-block` to make the span a block element, then use `width: 100%` to give it a width of 100% of its parent.
+
+
 ## `T3`
 
 ### 1. After installed, Echarts-gl library still not working and failed to compile
@@ -152,9 +157,12 @@ export default function Page() {
 }
 ```
 
-### client-side environment variable not found
+### 2. client-side environment variable not found
 
 fix: In Next.js, all client-side envs should be prefixed with `NEXT_PUBLIC_`, e.g. `NEXT_PUBLIC_API_URL`
+
+### 3. React hooks rule takeaway
+can't use hook inside another hook, e.g. react query's useQuery hook inside a useEffect hook, or useQuery inside useQuery, etc. React will throw an error saying "Rendered fewer/more hooks than during the previous render".
 
 ## Git
 
