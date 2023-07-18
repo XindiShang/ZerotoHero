@@ -60,3 +60,29 @@
 ### 1. reset VSCode side panel
 - open the commands textbox with `CTRL+p` and then enter the command `> Reset View Locations`.
 
+## `Mobile HTML5 Related`
+
+- H5 dev is an endless wormhole, especially when you need to support crappy browsers and make it work on different devices and OSs.
+### 1. button area
+- make sure the button area is large enough by wrapping the icon svg with a container, and set the container's `height` to `100%`, and add `padding` to the container. There could be other ways, the takeaway is to make sure the button area is large enough.
+
+### 2. dialog
+- certain mobile browsers don't support `dialog` element, at least the `Dialog` of `Vant UI`, I didn't bother to find the polyfill, since I only need to create user agreement and privacy policy dialogs, I just created individual pages for them.
+
+### 3. button click delay
+- certain mobile browsers have a 200-300ms delay after a button is clicked, the solution is to use `fastclick` library.
+```js
+// main.ts
+// 引入fastclick 解决移动端300ms延迟
+import FastClick from 'fastclick';
+
+if ('addEventListener' in document) {
+	document.addEventListener('load', function() {
+		FastClick.attach(document.body);
+	}, false);
+}
+```
+
+### 4. events
+- certain mobile browsers don't support `click` event, the solution is to use `touchstart` event instead.
+- make sure to manually handle `lose focus` event for input elements.
