@@ -178,3 +178,10 @@ git commit -m "removing node_modules"
 ```
 
 After this, the .gitignore rule will ignore the directory away.
+
+
+## `HTTP Request`
+
+### 1. URL Encoding in HTTP GET Requests
+- Certain characters like +, , and # have specific meanings in URLs. For example, in URL encoding, + represents a space, and # signifies a fragment identifier. If these characters need to be included in the URL's query parameters, they must be encoded; otherwise, their original values might be lost.
+- Fix: use `encodeURIComponent()` to encode the query parameters.
