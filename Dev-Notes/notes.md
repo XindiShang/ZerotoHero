@@ -86,3 +86,17 @@ if ('addEventListener' in document) {
 ### 4. events
 - certain mobile browsers don't support `click` event, the solution is to use `touchstart` event instead.
 - make sure to manually handle `lose focus` event for input elements.
+
+## `Npm Related`
+
+### 1. dependency versioning
+- `~version` **“Approximately equivalent to version”**, will update you to all future patch versions, without incrementing the minor version.`~1.2.3` will use releases from 1.2.3 to <1.3.0.
+
+- `^version` **“Compatible with version”**, will update you to all future minor/patch versions, without incrementing the major version. `^1.2.3` will use releases from 1.2.3 to <2.0.0.
+
+### 2. `devDependencies` vs `dependencies`
+- `devDependencies` are modules which are only required during development, such as unit tests, bundlers, etc.
+
+### 3. package-lock.json
+- `package-lock.json` stores an exact, versioned dependency tree rather than using starred versioning like package.json itself (e.g. 1.0.*). This means you can guarantee the dependencies for other developers or prod releases, etc. It also has a mechanism to lock the tree but generally will regenerate if package.json changes.
+- if you use a different package manager, such as `yarn`, you can delete `package-lock.json` and `yarn.lock` will be generated. The same goes for `pnpm`.
