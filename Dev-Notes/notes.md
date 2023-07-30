@@ -95,8 +95,15 @@ if ('addEventListener' in document) {
 - `^version` **“Compatible with version”**, will update you to all future minor/patch versions, without incrementing the major version. `^1.2.3` will use releases from 1.2.3 to <2.0.0.
 
 ### 2. `devDependencies` vs `dependencies`
-- `devDependencies` are modules which are only required during development, such as unit tests, bundlers, etc.
+- `devDependencies` are modules which are only required during development, such as unit tests, bundlers, etc. `npm install -D` or `npm install --save-dev` will install the module and add it to `devDependencies` in `package.json`.
 
 ### 3. package-lock.json
 - `package-lock.json` stores an exact, versioned dependency tree rather than using starred versioning like package.json itself (e.g. 1.0.*). This means you can guarantee the dependencies for other developers or prod releases, etc. It also has a mechanism to lock the tree but generally will regenerate if package.json changes.
 - if you use a different package manager, such as `yarn`, you can delete `package-lock.json` and `yarn.lock` will be generated. The same goes for `pnpm`.
+
+### 4. npx
+- `npx` means executing.
+
+### 5. browserslist
+- `browserslist` is a config file for specifying the supported browsers for your project. It is used by many tools, including `babel`, `autoprefixer`, `postcss`, `eslint`, `stylelint`, etc. It can be configured in `package.json`, `.browserslistrc`, `.browserslistrc` or `browserslist` file. Check [here](https://browserslist.dev/?q=bGFzdCAyIHZlcnNpb25z) for more info.
+
