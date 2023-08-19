@@ -1,0 +1,31 @@
+.header {
+  display: flex;
+}
+
+.logo-container {
+  flex: 1;
+}
+
+.navigation {
+  flex: 3;
+}
+
+.nav-items {
+  display: flex;
+  gap: 1rem;
+  list-style: none;
+}
+
+.restaurant-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+.restaurant-card {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1rem;
+  border: 1px solid #ccc;
+}

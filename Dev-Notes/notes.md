@@ -107,3 +107,61 @@ if ('addEventListener' in document) {
 ### 5. browserslist
 - `browserslist` is a config file for specifying the supported browsers for your project. It is used by many tools, including `babel`, `autoprefixer`, `postcss`, `eslint`, `stylelint`, etc. It can be configured in `package.json`, `.browserslistrc`, `.browserslistrc` or `browserslist` file. Check [here](https://browserslist.dev/?q=bGFzdCAyIHZlcnNpb25z) for more info.
 
+### 6. npm scripts shortcuts
+- `npm start` is a shortcut for `npm run start`, and `npm test` is a shortcut for `npm run test`. No other scripts can be called this way.
+
+## `Config-Driven UI`
+- Config Driven UI refers to a design pattern where the UI's presentation and behavior are determined based on a configuration file or object, instead of being hardcoded in the code. This allows for modifications to the UI by merely changing the configuration, without touching the core application code.
+- For example, if you want to design a form, you can create a config file like this:
+```js
+const formConfig = {
+  title: 'User Profile',
+  fields: [
+    {
+      name: 'name',
+      label: 'Name',
+      type: 'text',
+      required: true,
+    },
+    {
+      name: 'email',
+      label: 'Email',
+      type: 'email',
+      required: true,
+    },
+    {
+      name: 'age',
+      label: 'Age',
+      type: 'number',
+      required: false,
+    },
+  ],
+  submitButtonText: 'Submit',
+  cancelButtonText: 'Cancel',
+};
+```
+- Then you can create a form component that renders the form based on the config file:
+```js
+const Form = ({ config }) => {
+  const { title, fields, submitButtonText, cancelButtonText } = config;
+  return (
+    <form>
+      <h1>{title}</h1>
+      {fields.map((field) => (
+        <div>
+          <label>{field.label}</label>
+          <input type={field.type} required={field.required} />
+        </div>
+      ))}
+      <button type="submit">{submitButtonText}</button>
+      <button type="button">{cancelButtonText}</button>
+    </form>
+  );
+};
+```
+- Applications:
+  - Dynamic Content & Layouts
+  - Multi-Tenant Apps like SaaS
+  - Experiments & A/B Testing
+  - Remote UI Updates
+  - Component Libraries & Design Systems
