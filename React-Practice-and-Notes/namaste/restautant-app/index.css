@@ -29,3 +29,27 @@
   padding: 1rem;
   border: 1px solid #ccc;
 }
+
+/* body filter */
+.filter{
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+.filter-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+.filter-btn:hover {
+  background-color: #ccc;
+}
+.filter-btn:active {
+  transform: translate(0.015rem, 0.075rem);
+  box-shadow: 0 0.15rem 0.15rem rgba(0, 0, 0, 0.2);
+}

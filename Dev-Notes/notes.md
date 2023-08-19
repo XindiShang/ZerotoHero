@@ -165,3 +165,14 @@ const Form = ({ config }) => {
   - Experiments & A/B Testing
   - Remote UI Updates
   - Component Libraries & Design Systems
+
+## `React Related`
+
+### 1. Reconciliation Algorithm (React Fiber)
+- React applies the reconciliation algorithm to identify differences in the virtual DOM and update the real DOM accordingly.
+- The virtual DOM is a lightweight, JavaScript-based representation of the real DOM, facilitating faster and easier manipulation. Functions like `React.createElement()` create virtual DOM elements, and `ReactDOM.render()` maps them to the real DOM.
+- Reconciliation is a recursive process, comparing two virtual DOM trees to detect changes. Starting at the tree's root, it examines each element. If different, the real DOM is updated; if the same, it continues to the next element. The process stops when no more elements are left.
+- Check [React Fiber Architecture](https://github.com/acdlite/react-fiber-architecture).
+
+### 2. React Hooks
+- Hooks are functions that let you “hook into” React state and lifecycle features from function components. Hooks don't work inside classes — they let you use React without classes.
