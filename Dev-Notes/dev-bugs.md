@@ -90,6 +90,11 @@ flex-basis : 0;   ➜ The div does not have a starting value as such and will
 
 fix: use `display: block` or `display: inline-block` to make the span a block element, then use `width: 100%` to give it a width of 100% of its parent.
 
+### 6. Tailwind CSS class precedence
+problem: Tailwind sets the precedence by the order in which it adds classes to the CSS that's generated after scanning for utility-classes in your code. The order of the items in the `class` string will not make a difference.
+
+fix: add a bang to the front of the class name to give it a higher precedence, e.g. `!text-red-500`
+
 
 ## `T3`
 
