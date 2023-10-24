@@ -176,3 +176,14 @@ const Form = ({ config }) => {
 
 ### 2. React Hooks
 - Hooks are functions that let you “hook into” React state and lifecycle features from function components. Hooks don't work inside classes — they let you use React without classes.
+
+## `CSS: Grid`
+
+### 1. Grid Auto Flow
+- The `grid-auto-flow` property determines automatic placement of items in a grid when positions aren't explicitly set.
+- Values:
+  - `row (default)`: Items are primarily placed in rows. If an item doesn't fit in a row, a new row is created.
+  - `column`: Items are primarily placed in columns. If an item doesn't fit in a column, a new column is created.
+  - `dense`: Items fill in gaps left in the grid, not strictly adhering to their source order. Can be combined with `row` or `column` like `grid-auto-flow: row dense;`.
+- Example:
+  - For a movie poster gallery, use grid-auto-flow: dense; to let smaller posters fill gaps left by larger featured ones, achieving a tight layout.
