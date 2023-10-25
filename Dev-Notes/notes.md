@@ -187,3 +187,38 @@ const Form = ({ config }) => {
   - `dense`: Items fill in gaps left in the grid, not strictly adhering to their source order. Can be combined with `row` or `column` like `grid-auto-flow: row dense;`.
 - Example:
   - For a movie poster gallery, use grid-auto-flow: dense; to let smaller posters fill gaps left by larger featured ones, achieving a tight layout.
+
+### 2. Grid Template Stuff
+- When designing a layout, we can use `grid-template-columns` and `grid-template-rows` to define the number and size of columns and rows. We can also use `grid-template-areas` to define the layout by naming grid areas and then assigning grid items to those areas.
+- The recommended way is to
+  - 1. Define the height of each row with `grid-template-rows`.
+  - 2. Analyze the row that needs columns, and define the width of each column with `grid-template-columns`.
+  - 3. Assign grid items to the grid area with `grid-template-areas`. We can also name each grid item with `grid-area`. For those grid items that don't need to be assigned, we can use `.` to represent an empty grid area.
+- `fr`: A fractional unit that represents the remaining space in the grid container. It is calculated by dividing the available space by the number of fractions. For example, if a grid container is 300px wide and has two columns, each column will be 150px (1fr). Note that `fr` is not a precise value, if the grid container keeps shrinking, and one grid item is set to `1fr`, it will eventually shrink to 0px. In that case, the grid item will disappear.
+- `minmax()`: A function that defines the size of a grid track. The first parameter is the minimum size, and the second parameter is the maximum size. Note that the min and max values need to be separated by a comma, and the min value can't be `fr`.
+- Use Line Names
+  - `grid-column` and `grid-row` accepts line names (or line numbers) as values. BTW, they are shorthand for `grid-column-start`, `grid-column-end`, `grid-row-start` and `grid-row-end`.
+  - Example:
+    ```css
+    body {
+      display: grid;
+      grid-template-columns: [page-start] 1fr [content-start] 80vw [content-end] 1fr [page-end];
+      grid-template-rows: [hero-start] 60vh [info-start] 5em [hero-end] 5em [info-end] auto [bottom];
+    }
+    .section-one {    
+      grid-column: page-start / page-end;
+      grid-row: hero-start / hero-end;
+    }
+
+    .section-two {  
+      grid-column: content-start / content-end;
+      grid-row: info-start / info-end;
+      z-index: 10;
+    }
+
+    .section-three {   
+      grid-column: page-start / page-end;
+      grid-row: hero-end / bottom;
+    }
+    ```
+- Child container can also inherit parent container's grid layout, and we can use `grid-template-columns: inherit;` and `grid-template-rows: inherit;` to achieve that.
