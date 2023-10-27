@@ -222,3 +222,14 @@ const Form = ({ config }) => {
     }
     ```
 - Child container can also inherit parent container's grid layout, and we can use `grid-template-columns: inherit;` and `grid-template-rows: inherit;` to achieve that.
+
+### 3. CSS Align
+- **Differences**:
+
+- `align-self`: Applies to individual flex items.
+Overrides align-items value for specific items.
+- `align-items`: Sets the default alignment for all items in the flex container.
+- `align-content`: Takes effect only when there are multiple lines in the flex container. Controls alignment and spacing between the lines.
+
+- **Real-life Example**:
+Imagine a bookshelf layout in an online bookstore. Each row displays book covers. Using align-items: baseline; ensures all book bases align to the shelf. To highlight a specific book, set its cover with align-self: flex-start;. For more space between rows of books, use align-content: space-between;.
