@@ -30,6 +30,12 @@
   border: 1px solid #ccc;
 }
 
+.restaurant-card .restaurant-image img {
+  width: 100%;
+  aspect-ratio: 2/1;
+  object-fit: cover;
+}
+
 /* body filter */
 .filter{
   display: flex;

@@ -1,25 +1,32 @@
 export const resList = [
   {
-    "id": 1,
-    "name": "La Bella Italia",
-    "description": "Authentic Italian cuisine with a modern twist.",
-    "address": "123 Pasta Lane, Romeville, IT",
-    "phone": "(123) 456-7890",
-    "rating": 4.7,
-    "menu": ["Spaghetti Carbonara", "Margherita Pizza", "Tiramisu"],
-    "image": "https://example.com/images/la-bella-italia.jpg"
+    info: {
+      
+        "id": 1,
+        "name": "La Bella Italia",
+        "description": "Authentic Italian cuisine with a modern twist.",
+        "address": "123 Pasta Lane, Romeville, IT",
+        "phone": "(123) 456-7890",
+        "rating": 4.7,
+        "menu": ["Spaghetti Carbonara", "Margherita Pizza", "Tiramisu"],
+        "image": "https://example.com/images/la-bella-italia.jpg"
+      
+    }
   },
   {
-    "id": 2,
-    "name": "Mystic Thai",
-    "description": "A journey through the flavors of Thailand.",
-    "address": "45 Curry Blvd, Bangkoktown, TH",
-    "phone": "(987) 654-3210",
-    "rating": 4.5,
-    "menu": ["Pad Thai", "Green Curry", "Mango Sticky Rice"],
-    "image": "https://example.com/images/mystic-thai.jpg"
+    info: {
+      "id": 2,
+      "name": "Mystic Thai",
+      "description": "A journey through the flavors of Thailand.",
+      "address": "45 Curry Blvd, Bangkoktown, TH",
+      "phone": "(987) 654-3210",
+      "rating": 4.5,
+      "menu": ["Pad Thai", "Green Curry", "Mango Sticky Rice"],
+      "image": "https://example.com/images/mystic-thai.jpg"
+    }
   },
   {
+    info: {
     "id": 3,
     "name": "Café Parisien",
     "description": "Experience the charm of French dining.",
@@ -28,8 +35,10 @@ export const resList = [
     "rating": 4.8,
     "menu": ["Croissant", "Coq au Vin", "Crème Brûlée"],
     "image": "https://example.com/images/cafe-parisien.jpg"
-  },
+  }
+},
   {
+    info: {
     "id": 4,
     "name": "Sakura Sushi",
     "description": "Fresh sushi and Japanese delicacies.",
@@ -38,8 +47,9 @@ export const resList = [
     "rating": 4.6,
     "menu": ["Sushi Platter", "Tempura", "Miso Soup"],
     "image": "https://example.com/images/sakura-sushi.jpg"
-  },
-  {
+  }
+},
+  { info: {
     "id": 5,
     "name": "Taco Fiesta",
     "description": "A vibrant Mexican fiesta in every bite.",
@@ -48,8 +58,8 @@ export const resList = [
     "rating": 4.3,
     "menu": ["Tacos Al Pastor", "Guacamole", "Churros"],
     "image": "https://example.com/images/taco-fiesta.jpg"
-  },
-  {
+  }},
+  { info: {
     "id": 6,
     "name": "Bavarian Brews",
     "description": "German food and craft beers.",
@@ -58,8 +68,8 @@ export const resList = [
     "rating": 4.4,
     "menu": ["Bratwurst", "Pretzels", "Schnitzel"],
     "image": "https://example.com/images/bavarian-brews.jpg"
-  },
-  {
+  }},
+  { info: {
     "id": 7,
     "name": "Bombay Bites",
     "description": "Flavorsome Indian cuisine.",
@@ -68,8 +78,8 @@ export const resList = [
     "rating": 4.5,
     "menu": ["Butter Chicken", "Samosas", "Gulab Jamun"],
     "image": "https://example.com/images/bombay-bites.jpg"
-  },
-  {
+  }},
+  { info: {
     "id": 8,
     "name": "Shanghai Wok",
     "description": "Traditional Chinese dishes with a modern flair.",
@@ -78,8 +88,8 @@ export const resList = [
     "rating": 4.7,
     "menu": ["Dumplings", "Kung Pao Chicken", "Peking Duck"],
     "image": "https://example.com/images/shanghai-wok.jpg"
-  },
-  {
+  }},
+  { info: {
     "id": 9,
     "name": "Southern Comfort",
     "description": "Homestyle American comfort food.",
@@ -88,15 +98,17 @@ export const resList = [
     "rating": 4.2,
     "menu": ["Fried Chicken", "Mac 'n' Cheese", "Pecan Pie"],
     "image": "https://example.com/images/southern-comfort.jpg"
-  },
+  }},
   {
-    "id": 10,
-    "name": "Aegean Odyssey",
-    "description": "Mediterranean cuisine inspired by Greek flavors.",
-    "address": "67 Olympus Blvd, Athens, GR",
-    "phone": "(901) 234-5678",
-    "rating": 4.6,
-    "menu": ["Greek Salad", "Moussaka", "Baklava"],
-    "image": "https://example.com/images/aegean-odyssey.jpg"
+    info: {
+      "id": 10,
+      "name": "Aegean Odyssey",
+      "description": "Mediterranean cuisine inspired by Greek flavors.",
+      "address": "67 Olympus Blvd, Athens, GR",
+      "phone": "(901) 234-5678",
+      "rating": 4.6,
+      "menu": ["Greek Salad", "Moussaka", "Baklava"],
+      "image": "https://example.com/images/aegean-odyssey.jpg"
+    }
   }
 ]
