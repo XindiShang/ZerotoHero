@@ -87,7 +87,7 @@ if ('addEventListener' in document) {
 - certain mobile browsers don't support `click` event, the solution is to use `touchstart` event instead.
 - make sure to manually handle `lose focus` event for input elements.
 
-## `Npm Related`
+## `Package Management`
 
 ### 1. dependency versioning
 - `~version` **“Approximately equivalent to version”**, will update you to all future patch versions, without incrementing the minor version.`~1.2.3` will use releases from 1.2.3 to <1.3.0.
@@ -109,6 +109,14 @@ if ('addEventListener' in document) {
 
 ### 6. npm scripts shortcuts
 - `npm start` is a shortcut for `npm run start`, and `npm test` is a shortcut for `npm run test`. No other scripts can be called this way.
+
+### 7. How to change the existing package manager from npm to pnpm
+- 1. If it is a working project, delete `node_modules` by running `npx npkill`. It's a lightweight tool to delete `node_modules` directories.
+- 2. Create a `pnpmworkspace.yaml` if needed.
+- 3. `pnpm import` to scan the current `package-lock.json`/`yarn.lock` and convert it to `pnpm-lock.yaml`.
+- 4. Delete `package-lock.json`/`yarn.lock`.
+- 5. `pnpm install` to install the dependencies.
+- 6, Change the `scripts` in `package.json` to use `pnpm` instead of `npm`.
 
 ## `Config-Driven UI`
 - Config Driven UI refers to a design pattern where the UI's presentation and behavior are determined based on a configuration file or object, instead of being hardcoded in the code. This allows for modifications to the UI by merely changing the configuration, without touching the core application code.
